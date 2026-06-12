@@ -10,4 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Demo policy check
-        run: echo "CognitivTrust demo policy check passed"
+        run: |
+          # Validate critical files exist
+          if [ ! -f "clinical-validation.config" ]; then
+            echo "Error: Clinical validation configuration missing"
+            exit 1
+          fi
+          echo "CognitivTrust demo policy check passed"
